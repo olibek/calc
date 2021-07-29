@@ -1,8 +1,8 @@
-let money = 26;
-let income = 'Pub';
-let addExpenses = 13;
-let deposit = 4;
-let mission = 'Learn JS!';
-let period = 2;
+let money;
+let income;
+let addExpenses;
+let deposit;
+let mission;
+let period;
 
-alert(mission);
+alert('Привет Мир!');
