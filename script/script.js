@@ -6,3 +6,4 @@ let mission;
 let period;
 
 alert('Привет Мир!');
+console.log('Привет мир!')
