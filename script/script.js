@@ -4,9 +4,7 @@ let addExpenses = 'Интернет, Топливо, Сигареты, Кому�
 let deposit = true;
 let mission = 500000;
 let period = 8;
-let budgetDay;
-
-budgetDay = money / 30;
+let budgetDay = money / 30;;
 
 alert('Привет Мир!');
 
