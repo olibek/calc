@@ -1,7 +1,7 @@
 'use strict';
-let income = 'фриланс';
-let mission = 500000;
-let period = 8;
+const income = 'фриланс';
+const mission = 500000;
+const period = 8;
 
 const money = +prompt('Ваш месячный доход');
 const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
@@ -11,28 +11,27 @@ const amount1 = +prompt('Во сколько это обойдется');
 const expenses2 = prompt('Введите обязательную статью расходов?');
 const amount2 = +prompt('Во сколько это обойдется');
 
-let showTypeOf = function (data) {
+const showTypeOf = function (data) {
   console.log(data, typeof (data));
 };
 
-let getExpensesMonth = function () {
+const getExpensesMonth = function () {
   return amount1 + amount2;
 };
 
-function getAccumulatedMonth() {
+const getAccumulatedMonth = function () {
   return money - getExpensesMonth();
-}
+};
 
 const accumulatedMonth = getAccumulatedMonth();
 const month = Math.ceil(mission / accumulatedMonth);
 const budgetDay = Math.floor(accumulatedMonth / 30);
 
-function getTargetMonth() {
+const getTargetMonth = function () {
   return Math.ceil(mission / accumulatedMonth);
-}
+};
 
-
-let getStatusIncome = function () {
+const getStatusIncome = function () {
   if (budgetDay >= 1200) {
     return ('У вас высокий уровень дохода');
   }
