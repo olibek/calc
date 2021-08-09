@@ -1,10 +1,9 @@
 'use strict';
 
-let isNumber = function (n) {
+const isNumber = function (n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
-
-let isString = function (n) {
+const isString = function (n) {
   return isNaN(n);
 };
 
@@ -96,7 +95,7 @@ console.log(inputTargetAmount);
 const inputPeriodSelect = document.querySelector('.period-select');
 console.log(inputPeriodSelect);
 
-let appData = {
+const appData = {
   income: {},
   addIncome: [],
   expenses: {},
