@@ -16,7 +16,7 @@ const start = function () {
 
   while (!isNumber(money));
 };
-start();
+// start();
 
 const startBut = document.getElementById('start');
 console.log(startBut);
@@ -33,25 +33,25 @@ console.log(chekBoxDeposit);
 const inpIncomeItem = document.querySelectorAll('.additional_income-item');
 console.log(inpIncomeItem);
 
-const budgetMonthClass = document.getElementsByClassName('budget_month-value');
+const budgetMonthClass = document.getElementsByClassName('budget_month-value'[0]);
 console.log(budgetMonthClass);
 
-const budgetDayClass = document.getElementsByClassName('budget_day-value');
+const budgetDayClass = document.getElementsByClassName('budget_day-value'[0]);
 console.log(budgetDayClass);
 
-const expensesMonthClass = document.getElementsByClassName('expenses_month-value');
+const expensesMonthClass = document.getElementsByClassName('expenses_month-value'[0]);
 console.log(expensesMonthClass);
 
-const additionalIncomeClass = document.getElementsByClassName('additional_income-value');
+const additionalIncomeClass = document.getElementsByClassName('additional_income-value'[0]);
 console.log(additionalIncomeClass);
 
-const additionalExpensesClass = document.getElementsByClassName('additional_expenses-value');
+const additionalExpensesClass = document.getElementsByClassName('additional_expenses-value'[0]);
 console.log(additionalExpensesClass);
 
-const incomePeriodClass = document.getElementsByClassName('income_period-value');
+const incomePeriodClass = document.getElementsByClassName('income_period-value'[0]);
 console.log(incomePeriodClass);
 
-const targetMonthClass = document.getElementsByClassName('target_month-value');
+const targetMonthClass = document.getElementsByClassName('target_month-value'[0]);
 console.log(targetMonthClass);
 
 const inputSalaryAmount = document.querySelector('.salary-amount');
