@@ -19,81 +19,54 @@ const start = function () {
 // start();
 
 const startBut = document.getElementById('start');
-console.log(startBut);
 
 const plusButIncome = document.getElementsByTagName('button')[0];
-console.log(plusButIncome);
 
 const plusButExpenses = document.getElementsByTagName('button')[1];
-console.log(plusButExpenses);
 
 const chekBoxDeposit = document.querySelector('#deposit-check');
-console.log(chekBoxDeposit);
 
 const inpIncomeItem = document.querySelectorAll('.additional_income-item');
-console.log(inpIncomeItem);
 
 const budgetMonthClass = document.getElementsByClassName('budget_month-value'[0]);
-console.log(budgetMonthClass);
 
 const budgetDayClass = document.getElementsByClassName('budget_day-value'[0]);
-console.log(budgetDayClass);
 
 const expensesMonthClass = document.getElementsByClassName('expenses_month-value'[0]);
-console.log(expensesMonthClass);
 
 const additionalIncomeClass = document.getElementsByClassName('additional_income-value'[0]);
-console.log(additionalIncomeClass);
 
 const additionalExpensesClass = document.getElementsByClassName('additional_expenses-value'[0]);
-console.log(additionalExpensesClass);
 
 const incomePeriodClass = document.getElementsByClassName('income_period-value'[0]);
-console.log(incomePeriodClass);
 
 const targetMonthClass = document.getElementsByClassName('target_month-value'[0]);
-console.log(targetMonthClass);
 
 const inputSalaryAmount = document.querySelector('.salary-amount');
-console.log(inputSalaryAmount);
 
 const inputIncome = document.querySelector('input.income-title');
-console.log(inputIncome);
 
 const inputAmount = document.querySelector('.income-amount');
-console.log(inputAmount);
 
 const inputAdditionalIncome = document.querySelectorAll('.additional_income-item')[0];
-console.log(inputAdditionalIncome);
 
 const inputAdditionalIncomeTwo = document.querySelectorAll('.additional_income-item')[1];
-console.log(inputAdditionalIncomeTwo);
 
 const inputExpenses = document.querySelector('input.expenses-title');
-console.log(inputExpenses);
-
 
 const inputExpensesAmount = document.querySelector('.expenses-amount');
-console.log(inputExpensesAmount);
 
 const inputAdditionalExpenses = document.querySelector('.additional_expenses-item');
-console.log(inputAdditionalExpenses);
 
 const inputDepositCheck = document.querySelector('#deposit-check');
-console.log(inputDepositCheck);
 
 const inputDepositAmount = document.querySelector('.deposit-amount');
-console.log(inputDepositAmount);
 
 const inputDepositPercent = document.querySelector('.deposit-percent');
-console.log(inputDepositPercent);
-
 
 const inputTargetAmount = document.querySelector('.target-amount');
-console.log(inputTargetAmount);
 
 const inputPeriodSelect = document.querySelector('.period-select');
-console.log(inputPeriodSelect);
 
 const appData = {
   income: {},
