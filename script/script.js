@@ -208,8 +208,25 @@ const startBut = document.getElementById('start'),
         item.removeAttribute('disabled', 'disabled');
         item.value = '';
       });
+      console.log(expensesItems);
+
+      expensesItems.forEach(function (item, index) {
+        if (index !== 0) {
+          item.remove();
+          plusButExpenses.style.display = 'block';
+        }
+      });
+      incomeItems.forEach(function (item, index) {
+        if (index !== 0) {
+          item.remove();
+          plusButIncome.style.display = 'block';
+        }
+      });
+
+
       startBut.style.display = 'block';
       cancelBut.style.display = 'none';
+
     }
   };
 cancelBut.addEventListener('click', appData.reset);
