@@ -95,7 +95,6 @@ const appData = {
 
   },
   showResult: function () {
-    console.log(this);
     budgetMonthClass.value = this.budgetMonth;
     budgetDayClass.value = this.budgetDay;
     expensesMonthClass.value = this.expensesMonth;
@@ -277,5 +276,3 @@ plusButIncome.addEventListener('click', appData.addIncomeBlock);
 
 inputPeriodSelect.addEventListener('mousemove', appData.getPeriodAmount);
 
-
-console.log(appData);
