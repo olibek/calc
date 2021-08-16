@@ -66,6 +66,28 @@ const startBut = document.getElementById('start'),
 
   periodAmount = document.querySelector('.period-amount');
 
+const rusWord = function () {
+  let words = document.querySelectorAll('[placeholder="Наименование"]');
+  for (let i = 0; i < Object.keys(words).length; i++) {
+    words[i].addEventListener('input', function () {
+      this.value = this.value.replace(/[\w]/g, '');
+    });
+  }
+};
+
+rusWord();
+
+const inputNumb = function () {
+  let numbers = document.querySelectorAll('[placeholder="Сумма"]');
+  for (let i = 0; i < Object.keys(numbers).length; i++) {
+    numbers[i].addEventListener('input', function () {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+  }
+};
+
+inputNumb();
+
 const AppData = function () {
   this.income = {};
   this.incomeMonth = 0;
