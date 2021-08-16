@@ -66,6 +66,28 @@ const startBut = document.getElementById('start'),
 
   periodAmount = document.querySelector('.period-amount');
 
+const rusWord = function () {
+  let words = document.querySelectorAll('[placeholder="Наименование"]');
+  for (let i = 0; i < Object.keys(words).length; i++) {
+    words[i].addEventListener('input', function () {
+      this.value = this.value.replace(/[\w]/g, '');
+    });
+  }
+};
+
+rusWord();
+
+const inputNumb = function () {
+  let numbers = document.querySelectorAll('[placeholder="Сумма"]');
+  for (let i = 0; i < Object.keys(numbers).length; i++) {
+    numbers[i].addEventListener('input', function () {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+  }
+};
+
+inputNumb();
+
 const AppData = function () {
   this.income = {};
   this.incomeMonth = 0;
@@ -82,7 +104,7 @@ const AppData = function () {
 };
 
 AppData.prototype.start = function () {
-  console.log(this);
+
   this.budget = +inputSalaryAmount.value;
 
   this.getExpenses();
@@ -261,12 +283,12 @@ AppData.prototype.reset = function () {
   cancelBut.style.display = 'none';
 };
 
-const appData = new AppData();
+
 
 AppData.prototype.eventListener = function () {
 
-  const start = this.start.bind(appData);
-  const reset = this.reset.bind(appData);
+  const start = this.start.bind(this);
+  const reset = this.reset.bind(this);
   console.log(this);
   cancelBut.addEventListener('click', reset);
   startBut.addEventListener('click', function () {
@@ -285,11 +307,14 @@ AppData.prototype.eventListener = function () {
     }
   });
 
-  plusButExpenses.addEventListener('click', appData.addExpensesBlock);
+  plusButExpenses.addEventListener('click', this.addExpensesBlock);
 
-  plusButIncome.addEventListener('click', appData.addIncomeBlock);
+  plusButIncome.addEventListener('click', this.addIncomeBlock);
 
-  inputPeriodSelect.addEventListener('mousemove', appData.getPeriodAmount);
+  inputPeriodSelect.addEventListener('mousemove', this.getPeriodAmount);
 };
 
-AppData.prototype.eventListener();
+const appData = new AppData();
+
+appData.eventListener();
+
