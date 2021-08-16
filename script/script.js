@@ -260,6 +260,7 @@ AppData.prototype.reset = function () {
   startBut.style.display = 'block';
   cancelBut.style.display = 'none';
 };
+
 const appData = new AppData();
 
 AppData.prototype.eventListener = function () {
@@ -292,6 +293,3 @@ AppData.prototype.eventListener = function () {
 };
 
 AppData.prototype.eventListener();
-
-
-
