@@ -82,7 +82,7 @@ const AppData = function () {
 };
 
 AppData.prototype.start = function () {
-  console.log(this);
+
   this.budget = +inputSalaryAmount.value;
 
   this.getExpenses();
@@ -261,12 +261,12 @@ AppData.prototype.reset = function () {
   cancelBut.style.display = 'none';
 };
 
-const appData = new AppData();
+
 
 AppData.prototype.eventListener = function () {
 
-  const start = this.start.bind(appData);
-  const reset = this.reset.bind(appData);
+  const start = this.start.bind(this);
+  const reset = this.reset.bind(this);
   console.log(this);
   cancelBut.addEventListener('click', reset);
   startBut.addEventListener('click', function () {
@@ -285,11 +285,14 @@ AppData.prototype.eventListener = function () {
     }
   });
 
-  plusButExpenses.addEventListener('click', appData.addExpensesBlock);
+  plusButExpenses.addEventListener('click', this.addExpensesBlock);
 
-  plusButIncome.addEventListener('click', appData.addIncomeBlock);
+  plusButIncome.addEventListener('click', this.addIncomeBlock);
 
-  inputPeriodSelect.addEventListener('mousemove', appData.getPeriodAmount);
+  inputPeriodSelect.addEventListener('mousemove', this.getPeriodAmount);
 };
 
-AppData.prototype.eventListener();
+const appData = new AppData();
+
+appData.eventListener();
+
