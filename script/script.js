@@ -104,18 +104,31 @@ const AppData = function () {
 };
 
 AppData.prototype.start = function () {
+  if (inputSalaryAmount.value === '') {
+    alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
+  }
+  else {
 
-  this.budget = +inputSalaryAmount.value;
+    startBut.style.display = 'none';
+    cancelBut.style.display = 'block';
+    const inputLeft = classData.querySelectorAll('input[type=text]');
+    inputLeft.forEach(function (item) {
+      item.setAttribute('disabled', 'disabled');
+    });
 
-  this.getExpenses();
-  this.getIncome();
 
-  this.getBudget();
-  this.getTargetMonth();
-  this.getStatusIncome();
-  this.getAddIncome();
-  this.getAddExpenses();
-  this.showResult();
+    this.budget = +inputSalaryAmount.value;
+
+    this.getExpenses();
+    this.getIncome();
+
+    this.getBudget();
+    this.getTargetMonth();
+    this.getStatusIncome();
+    this.getAddIncome();
+    this.getAddExpenses();
+    this.showResult();
+  }
 
 };
 
@@ -283,29 +296,13 @@ AppData.prototype.reset = function () {
   cancelBut.style.display = 'none';
 };
 
-
-
 AppData.prototype.eventListener = function () {
 
   const start = this.start.bind(this);
   const reset = this.reset.bind(this);
   console.log(this);
   cancelBut.addEventListener('click', reset);
-  startBut.addEventListener('click', function () {
-    if (inputSalaryAmount.value === '') {
-      alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
-    }
-    else {
-
-      start();
-      startBut.style.display = 'none';
-      cancelBut.style.display = 'block';
-      const inputLeft = classData.querySelectorAll('input[type=text]');
-      inputLeft.forEach(function (item) {
-        item.setAttribute('disabled', 'disabled');
-      });
-    }
-  });
+  startBut.addEventListener('click', start);
 
   plusButExpenses.addEventListener('click', this.addExpensesBlock);
 
