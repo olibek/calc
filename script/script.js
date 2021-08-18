@@ -91,6 +91,9 @@ const inputNumb = function () {
   }
   depositPercent.addEventListener('input', function () {
     this.value = this.value.replace(/[^\d]/g, '');
+    if (depositPercent.value > 100) {
+      depositPercent.value = 100;
+    }
   });
 
 };
@@ -113,35 +116,30 @@ class AppData {
     this.expenses = {};
   }
   start() {
-    if (depositPercent.value > 99) {
-      alert('Введите правильный процент');
-      // startBut.disabled = true;
-    } else
+    if (inputSalaryAmount.value === '') {
+      alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
+    }
+    else {
+      startBut.disabled = false;
+      startBut.style.display = 'none';
+      cancelBut.style.display = 'block';
+      const inputLeft = classData.querySelectorAll('input[type=text]');
+      inputLeft.forEach(function (item) {
+        item.setAttribute('disabled', 'disabled');
+      });
+      this.budget = +inputSalaryAmount.value;
 
-      if (inputSalaryAmount.value === '') {
-        alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
-      }
-      else {
-        startBut.disabled = false;
-        startBut.style.display = 'none';
-        cancelBut.style.display = 'block';
-        const inputLeft = classData.querySelectorAll('input[type=text]');
-        inputLeft.forEach(function (item) {
-          item.setAttribute('disabled', 'disabled');
-        });
-        this.budget = +inputSalaryAmount.value;
+      this.getExpenses();
+      this.getIncome();
+      this.getInfoDeposit();
 
-        this.getExpenses();
-        this.getIncome();
-        this.getInfoDeposit();
-
-        this.getBudget();
-        this.getTargetMonth();
-        this.getStatusIncome();
-        this.getAddIncome();
-        this.getAddExpenses();
-        this.showResult();
-      }
+      this.getBudget();
+      this.getTargetMonth();
+      this.getStatusIncome();
+      this.getAddIncome();
+      this.getAddExpenses();
+      this.showResult();
+    }
 
   }
 
@@ -275,6 +273,7 @@ class AppData {
 
     } else {
       depositPercent.value = valueSelect;
+      depositPercent.style.display = 'none';
     }
   }
   depositHandler() {
