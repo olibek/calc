@@ -154,6 +154,8 @@ AppData.prototype.addExpensesBlock = function () {
   if (expensesItems.length === 3) {
     plusButExpenses.style.display = 'none';
   }
+  inputNumb();
+  rusWord();
 };
 
 AppData.prototype.addIncomeBlock = function () {
@@ -165,6 +167,8 @@ AppData.prototype.addIncomeBlock = function () {
   if (incomeItems.length === 3) {
     plusButIncome.style.display = 'none';
   }
+  inputNumb();
+  rusWord();
 };
 
 AppData.prototype.getAddExpenses = function () {
