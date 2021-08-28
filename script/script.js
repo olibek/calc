@@ -8,8 +8,11 @@ const isString = function (n) {
 };
 
 let incomeItems = document.querySelectorAll('.income-items'),
+
   inputDepositCheck = document.getElementById('deposit-check'),
+
   expensesItems = document.querySelectorAll('.expenses-items');
+
 
 const startBut = document.getElementById('start'),
 
@@ -19,9 +22,9 @@ const startBut = document.getElementById('start'),
 
   inputLeft = classData.querySelectorAll('input[type=text]'),
 
-  plusButIncome = document.getElementsByTagName('button')[0],
+  plusButIncome = document.querySelector('.income_add'),
 
-  plusButExpenses = document.getElementsByTagName('button')[1],
+  plusButExpenses = document.querySelector('.expenses_add'),
 
   chekBoxDeposit = document.querySelector('#deposit-check'),
 
@@ -53,7 +56,7 @@ const startBut = document.getElementById('start'),
 
   inputExpenses = document.querySelector('input.expenses-title'),
 
-  inputAdditionalExpenses = document.querySelector('.additional_expenses-item'),
+  inputAdditionalExpenses = document.querySelectorAll('.additional_expenses-item'),
 
   inputDepositAmount = document.querySelector('.deposit-amount'),
 
@@ -70,6 +73,7 @@ const startBut = document.getElementById('start'),
   depositPercent = document.querySelector('.deposit-percent'),
 
   periodAmount = document.querySelector('.period-amount');
+
 
 const rusWord = function () {
   let words = document.querySelectorAll('[placeholder="Наименование"]');
@@ -100,6 +104,11 @@ const inputNumb = function () {
 
 inputNumb();
 
+const firstUpperCase = function (word) {
+  word = word[0].toUpperCase() + word.substring(1).toLowerCase();
+  return word;
+};
+
 class AppData {
   constructor() {
     this.income = {};
@@ -116,6 +125,7 @@ class AppData {
     this.expenses = {};
   }
   start() {
+
     if (inputSalaryAmount.value === '') {
       alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
     }
@@ -127,17 +137,16 @@ class AppData {
       inputLeft.forEach(function (item) {
         item.setAttribute('disabled', 'disabled');
       });
+
+
       this.budget = +inputSalaryAmount.value;
 
-      this.getExpenses();
-      this.getIncome();
+      this.getExpInc();
       this.getInfoDeposit();
-
       this.getBudget();
       this.getTargetMonth();
       this.getStatusIncome();
-      this.getAddIncome();
-      this.getAddExpenses();
+      this.addExpIncBlock();
       this.showResult();
     }
 
@@ -156,72 +165,54 @@ class AppData {
     });
   }
 
-  addExpensesBlock() {
-    const cloneExpensesItems = expensesItems[0].cloneNode(true);
-    cloneExpensesItems.childNodes[1].value = "";
-    cloneExpensesItems.childNodes[3].value = "";
-    expensesItems[0].parentNode.insertBefore(cloneExpensesItems, plusButExpenses);
-    expensesItems = document.querySelectorAll('.expenses-items');
-    if (expensesItems.length === 3) {
-      plusButExpenses.style.display = 'none';
-    }
-  }
-
-  addIncomeBlock() {
-    const cloneIncomeItems = incomeItems[0].cloneNode(true);
-    cloneIncomeItems.childNodes[1].value = "";
-    cloneIncomeItems.childNodes[3].value = "";
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItems, plusButIncome);
-    incomeItems = document.querySelectorAll('.income-items');
-    if (incomeItems.length === 3) {
-      plusButIncome.style.display = 'none';
-    }
-  }
-
-  getAddExpenses() {
-    const addExpenses = inputAdditionalExpenses.value.split(',');
-    addExpenses.forEach((item) => {
-      item = item.trim();
-      if (item !== '') {
-        this.addExpenses.push(item);
+  getExpInc() {
+    const count = item => {
+      const startStr = item.className.split('-')[0];
+      const itemTitle = item.querySelector(`.${startStr}-title`).value;
+      const itemAmount = item.querySelector(`.${startStr}-amount`).value;
+      if (itemTitle !== "" && itemAmount !== "") {
+        this[startStr][firstUpperCase(itemTitle)] = itemAmount;
       }
-    });
-  }
+    };
 
-  getAddIncome() {
-    inpIncomeItem.forEach((item) => {
-      const itemValue = item.value.trim();
-      if (itemValue !== '') {
-        this.addIncome.push(itemValue);
-      }
-    });
-  }
-
-  getExpenses() {
-    expensesItems.forEach((item) => {
-      const itemExpenses = item.querySelector('.expenses-title').value;
-      const cashExpenses = +item.querySelector('.expenses-amount').value;
-      if (itemExpenses !== '' && cashExpenses !== '') {
-        this.expenses[itemExpenses] = cashExpenses;
-      }
-    });
-    for (let key in this.expenses) {
-      this.expensesMonth += this.expenses[key];
-    }
-  }
-
-  getIncome() {
-    incomeItems.forEach((item) => {
-      const itemIncome = item.querySelector('.income-title').value;
-      const cashIncome = +item.querySelector('.income-amount').value;
-      if (itemIncome !== '' && cashIncome !== '') {
-        this.income[itemIncome] = cashIncome;
-      }
-    });
+    expensesItems.forEach(count);
+    incomeItems.forEach(count);
 
     for (let key in this.income) {
       this.incomeMonth += +this.income[key];
     }
+  }
+
+  addExpIncBlock(item) {
+
+    const startStr = item.target.className.split(' ')[1].slice(0, -4);
+    const itemPlus = document.querySelector(`.${startStr}_add`);
+    const inputItems = document.querySelectorAll(`.${startStr}-items`);
+    const cloneItem = inputItems[0].cloneNode(true);
+    cloneItem.childNodes[1].value = "";
+    cloneItem.childNodes[3].value = "";
+    inputItems[0].parentNode.insertBefore(cloneItem, itemPlus);
+
+    if (inputItems.length === 2) {
+      itemPlus.style.display = "none";
+    }
+
+    inputNumb();
+    rusWord();
+  }
+
+  getaddExpInc() {
+    const count = item => {
+      const startStr = item.className.split('-')[0].slice(11, 20);
+      item.value = item.value.trim();
+      item.value = item.value.split(', ');
+      if (item.value !== "") {
+        this["add" + firstUpperCase(startStr)].push(firstUpperCase(item.value));
+      }
+    };
+
+    inpIncomeItem.forEach(count);
+    inputAdditionalExpenses.forEach(count);
   }
 
   getPeriodAmount() {
@@ -339,9 +330,8 @@ class AppData {
     cancelBut.addEventListener('click', () => this.reset());
     startBut.addEventListener('click', () => this.start());
 
-    plusButExpenses.addEventListener('click', this.addExpensesBlock);
-
-    plusButIncome.addEventListener('click', this.addIncomeBlock);
+    plusButExpenses.addEventListener('click', this.addExpIncBlock);
+    plusButIncome.addEventListener("click", this.addExpIncBlock);
 
     inputPeriodSelect.addEventListener('mousemove', this.getPeriodAmount);
 
